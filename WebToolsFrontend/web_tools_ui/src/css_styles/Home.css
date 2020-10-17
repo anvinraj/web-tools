@@ -1,0 +1,30 @@
+/* * {
+    border: 1px solid red;
+  } */
+.body{
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.904);
+    
+    overflow: auto;
+}
+
+.heading{
+    text-align: center;
+    color: rgb(238, 232, 223);
+    font-size: xx-large;
+    margin-top: 10px;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    
+}
+.mainBox{
+    height: auto;
+    min-height: 500px;
+    border: 1px solid red;
+    margin-top: 15px;
+    box-sizing: border-box;
+    margin-left: 25px;
+    margin-right: 25px;
+  overflow-y: hidden;
+}
