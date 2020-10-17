@@ -42,3 +42,7 @@
     background-color: rgba(20, 176, 238, 0.719);
     cursor: grab;
 }
+
+a{
+    text-decoration: none;
+}
