@@ -7,7 +7,11 @@ class Home extends Component{
         return(
             <div className="body">
                 <div className="heading">Web Tools</div>
-                <div className="mainBox"></div>
+                <div className="mainBox">
+                    <a href="#"><div className="item"> Face Detection from Image</div></a>
+                    <a href="#"><div className="item"> Face Detection from Video</div></a>
+
+                </div>
             </div>
         );
     }
