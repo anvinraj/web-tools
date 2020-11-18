@@ -13,11 +13,16 @@ class Home extends Component{
         };
     }
 
-    imageUploadFormFun = () =>{
+    imageUploadFormFun = (callingfrom) =>{
+        //console.log(callingfrom)
         this.setState({
             formBoxVisible:true,
             imageUploadForm:true
         });
+
+        if(callingfrom === 'extraction'){
+            console.log("image extraction started");
+        }
 
     }
 
@@ -28,7 +33,8 @@ class Home extends Component{
 
                 {!this.state.formBoxVisible ?
                 <div className="mainBox">
-                    <a onClick={this.imageUploadFormFun}><div className="item"> Face Detection from Image</div></a>
+                    <a onClick={() => this.imageUploadFormFun("extraction")}><div className="item"> Image details Extraction</div></a>
+                    <a onClick={() => this.imageUploadFormFun("face_detection")}><div className="item"> Face Detection from Image</div></a>
                     <a><div className="item"> Face Detection from Video</div></a>
 
                 </div>
