@@ -9,7 +9,8 @@ class Home extends Component{
         this.state={
             formBoxVisible:false,
             imageUploadForm:false,
-            videoUploadForm:false
+            videoUploadForm:false,
+            selectedFile:null
         };
     }
 
@@ -26,9 +27,16 @@ class Home extends Component{
 
     }
 
+    chooseFile = (event) =>{
+      console.log(event.target.files[0]);
+      this.setState({
+        selectedFile:URL.createObjectURL(event.target.files[0])
+      })
+    }
+
     render(){
         return(
-            <div className="body">                
+            <div className="body">
                 <div className="heading">Web Tools</div>
 
                 {!this.state.formBoxVisible ?
@@ -40,9 +48,10 @@ class Home extends Component{
                 </div>
                 :
                 <div className="mainBox">
-
-                    <input type="file"/>
-
+                    <div className="fileBox" >
+                      <input type="file" onChange={this.chooseFile}/>
+                      <input type="submit"/>
+                    </div>
                 </div>
                 }
             </div>

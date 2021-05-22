@@ -4,7 +4,7 @@
 .body{
     height: 100vh;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.904);    
+    background-color: rgba(0, 0, 0, 0.904);
     overflow: auto;
 }
 
@@ -13,7 +13,7 @@
     color: rgb(238, 232, 223);
     font-size: xx-large;
     margin-top: 10px;
-    
+
 }
 .mainBox{
     height: auto;
@@ -45,4 +45,33 @@
 
 a{
     text-decoration: none;
+}
+
+
+
+input[type=file]{
+  /* background-color: #4CAF50; */
+  border: none;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.fileBox{
+  border:1px solid red;
+  text-align: center;
+  align-items: center;
+  align-content: center;
 }
