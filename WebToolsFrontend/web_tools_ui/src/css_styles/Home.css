@@ -70,8 +70,18 @@ input[type=button], input[type=submit], input[type=reset] {
 }
 
 .fileBox{
-  border:1px solid red;
+  margin-top: 15px;
   text-align: center;
   align-items: center;
   align-content: center;
+}
+
+.buttonBox{
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
 }

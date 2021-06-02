@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import '../css_styles/Home.css';
+import def_image from '../images/default_img.jpg'
 
 
 class Home extends Component{
@@ -10,9 +12,16 @@ class Home extends Component{
             formBoxVisible:false,
             imageUploadForm:false,
             videoUploadForm:false,
-            selectedFile:null
+            selectedFile:null,
+            respImgUrl:def_image
         };
     }
+
+    onFileChange = event =>{
+      // console.log(event.target.files[0]);
+      this.setState({selectedFile:event.target.files[0]});
+    }
+
 
     imageUploadFormFun = (callingfrom) =>{
         //console.log(callingfrom)
@@ -27,12 +36,28 @@ class Home extends Component{
 
     }
 
-    chooseFile = (event) =>{
-      console.log(event.target.files[0]);
-      this.setState({
-        selectedFile:URL.createObjectURL(event.target.files[0])
-      })
+    onFileUpload = () =>{
+      const formData=new FormData();
+
+      formData.append("file",this.state.selectedFile);
+      console.log(this.state.selectedFile);
+      axios.post('http://127.0.0.1:8000/upload_image',formData)
+            .then(res=>{
+              var response=res.data
+              console.log(response);
+              this.setState({
+                respImgUrl:'http://'+response.url
+              });
+            })
+
     }
+
+    // chooseFile = (event) =>{
+    //   console.log(event.target.files[0]);
+    //   this.setState({
+    //     selectedFile:URL.createObjectURL(event.target.files[0])
+    //   })
+    // }
 
     render(){
         return(
@@ -49,8 +74,10 @@ class Home extends Component{
                 :
                 <div className="mainBox">
                     <div className="fileBox" >
-                      <input type="file" onChange={this.chooseFile}/>
-                      <input type="submit"/>
+                      <input type="file" onChange={this.onFileChange}/>
+                      <button className="buttonBox" onClick={this.onFileUpload}>Submit</button>
+                      <br/>
+                      <img src={this.state.respImgUrl}/>
                     </div>
                 </div>
                 }
