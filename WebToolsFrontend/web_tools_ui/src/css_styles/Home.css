@@ -85,3 +85,24 @@ input[type=button], input[type=submit], input[type=reset] {
   margin: 4px 2px;
   cursor: pointer;
 }
+.imageStyle{
+  height: 500px;
+  width: 700px;
+}
+.contentBox{
+  width:100%;
+  height:auto;
+  margin-top: 20px;
+}
+
+.contentBox .imgBox{
+  width:50%;
+  height:auto;
+  float: left;
+}
+
+.contentBox .descBox{
+  width:49%;
+  height:auto;
+  float: left;
+}

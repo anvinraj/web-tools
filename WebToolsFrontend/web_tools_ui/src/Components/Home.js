@@ -13,7 +13,8 @@ class Home extends Component{
             imageUploadForm:false,
             videoUploadForm:false,
             selectedFile:null,
-            respImgUrl:def_image
+            respImgUrl:def_image,
+            response:false
         };
     }
 
@@ -45,9 +46,17 @@ class Home extends Component{
             .then(res=>{
               var response=res.data
               console.log(response);
-              this.setState({
-                respImgUrl:'http://'+response.url
-              });
+              if(response.message=="success"){
+                  this.setState({
+                    respImgUrl:'http://'+response.url,
+                    response:true
+                  });
+              }else{
+                  this.setState({
+                    response:false
+                  });
+              }
+
             })
 
     }
@@ -65,21 +74,31 @@ class Home extends Component{
                 <div className="heading">Web Tools</div>
 
                 {!this.state.formBoxVisible ?
-                <div className="mainBox">
-                    <a onClick={() => this.imageUploadFormFun("extraction")}><div className="item"> Image details Extraction</div></a>
-                    <a onClick={() => this.imageUploadFormFun("face_detection")}><div className="item"> Face Detection from Image</div></a>
-                    <a><div className="item"> Face Detection from Video</div></a>
+                    <div className="mainBox">
+                        <a onClick={() => this.imageUploadFormFun("extraction")}><div className="item"> Image details Extraction</div></a>
+                        <a onClick={() => this.imageUploadFormFun("face_detection")}><div className="item"> Face Detection from Image</div></a>
+                        <a><div className="item"> Face Detection from Video</div></a>
 
-                </div>
-                :
-                <div className="mainBox">
-                    <div className="fileBox" >
-                      <input type="file" onChange={this.onFileChange}/>
-                      <button className="buttonBox" onClick={this.onFileUpload}>Submit</button>
-                      <br/>
-                      <img src={this.state.respImgUrl}/>
                     </div>
-                </div>
+                :
+                    <div className="mainBox">
+                        <div className="fileBox" >
+                          <input type="file" onChange={this.onFileChange}/>
+                          <button className="buttonBox" onClick={this.onFileUpload}>Submit</button>
+                          <br/>
+
+                          <div className="contentBox">
+                              <div className="imgBox">
+                                  {this.state.response ?
+                                      <img src={this.state.respImgUrl} className="imageStyle"/>
+                                  : null }
+                              </div>
+                              <div className="descBox"></div>
+                          </div>
+
+
+                        </div>
+                    </div>
                 }
             </div>
         );
