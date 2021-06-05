@@ -103,6 +103,32 @@ input[type=button], input[type=submit], input[type=reset] {
 
 .contentBox .descBox{
   width:49%;
+  height:500px;
+  float: left;
+  color:white;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.tagSpan{
+  width:300px;
+  color: white;
+  float: left;
+  text-align: left;
+}
+
+.valueSpan{
+  width:auto;
+  color: white;
+  float: left;
+}
+.divSep{
+  float: left;
+  margin-right: 20px;
+}
+.divRow{
+  width: 100%;
   height:auto;
+  margin-bottom: 5px;
   float: left;
 }
