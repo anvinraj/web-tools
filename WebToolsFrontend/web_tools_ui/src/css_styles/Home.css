@@ -85,6 +85,30 @@ input[type=button], input[type=submit], input[type=reset] {
   margin: 4px 2px;
   cursor: pointer;
 }
+.buttonBoxDel{
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  margin: 4px 2px;
+  margin-right: 10px;
+  cursor: pointer;
+  float: right;
+}
+
+.buttonBoxDownload{
+  background-color: blue;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  margin: 4px 2px;
+  margin-right: 10px;
+  cursor: pointer;
+  float: right;
+}
+
 .imageStyle{
   height: 500px;
   width: 700px;

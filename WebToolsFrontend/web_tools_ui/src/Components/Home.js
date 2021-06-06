@@ -15,7 +15,8 @@ class Home extends Component{
             selectedFile:null,
             respImgUrl:def_image,
             response:false,
-            respData:''
+            respData:'',
+            imgReadyToDownload:false,
         };
     }
 
@@ -88,6 +89,14 @@ class Home extends Component{
                         <div className="fileBox" >
                           <input type="file" onChange={this.onFileChange}/>
                           <button className="buttonBox" onClick={this.onFileUpload}>Upload</button>
+                          { this.state.response ?
+                              <button className="buttonBoxDel" onClick={this.onFileUpload}>Delete all Metadata</button>
+                          : null }
+
+                          {this.state.imgReadyToDownload ?
+                              <button className="buttonBoxDownload" onClick={this.onFileUpload}>Download Image</button>
+                          : null }
+
                           <br/>
                           {this.state.response ?
                               <div className="contentBox">
