@@ -22,6 +22,7 @@ from . views import *
 urlpatterns = [
     path('index', index),
     path('upload_image', uploadImage),
+    path('remove_image_md',removeMD)
 	
 ]
 # +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

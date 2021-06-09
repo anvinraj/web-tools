@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../css_styles/Home.css';
 import def_image from '../images/default_img.jpg'
+import ClipLoader from "react-spinners/ClipLoader";
 
 
+// const override = css`
+//   display: block;
+//   margin: 0 auto;
+//   border-color: red;
+// `;
+//https://www.npmjs.com/package/react-spinners
 class Home extends Component{
 
     constructor(props){
@@ -19,6 +26,8 @@ class Home extends Component{
             imgReadyToDownload:false,
         };
     }
+
+
 
     onFileChange = event =>{
       // console.log(event.target.files[0]);
@@ -60,8 +69,17 @@ class Home extends Component{
                     response:''
                   });
               }
-
             })
+    }
+
+    onFileMetadataDelete = () =>{
+        const formData=new FormData();
+        formData.append("fileName",this.state.respImgUrl)
+        axios.post('http://127.0.0.1:8000/remove_image_md',formData)
+              .then(res=>{
+                var resp=res.data
+                console.log(resp);
+              })
 
     }
 
@@ -75,6 +93,7 @@ class Home extends Component{
     render(){
         return(
             <div className="body">
+                <ClipLoader color="ffffff" loading={true}  size={150} />
                 <div className="heading">Web Tools</div>
 
                 {!this.state.formBoxVisible ?
@@ -90,7 +109,7 @@ class Home extends Component{
                           <input type="file" onChange={this.onFileChange}/>
                           <button className="buttonBox" onClick={this.onFileUpload}>Upload</button>
                           { this.state.response ?
-                              <button className="buttonBoxDel" onClick={this.onFileUpload}>Delete all Metadata</button>
+                              <button className="buttonBoxDel" onClick={this.onFileMetadataDelete}>Delete all Metadata</button>
                           : null }
 
                           {this.state.imgReadyToDownload ?

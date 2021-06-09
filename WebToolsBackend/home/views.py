@@ -56,3 +56,26 @@ def uploadImage(request):
         response_data['status'] = 'failed'
         response_data['message'] = str(e)
         return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+@csrf_exempt
+def removeMD(request):
+    if request.method == 'POST':
+        response_data = {}
+        try:
+            fileName=request.POST.get('fileName')
+            fileName=fileName.rsplit('/', 1)[-1] #Splitting filename from complete url
+            folder='uploads/'
+            outputFolder='uploads/md_removed/'
+            imageLocation=folder+fileName
+            image = Image.open(imageLocation)
+            data = list(image.getdata())
+            image_without_exif = Image.new(image.mode,image.size)
+            image_without_exif.putdata(data)
+            image_without_exif.save(outputFolder+fileName)
+            md_removed_img_url=request.META['HTTP_HOST']+ '/' + outputFolder +  fileName
+            response_data["img_url"] = md_removed_img_url
+            response_data["status"] = "success"
+            return HttpResponse(json.dumps(response_data), content_type="applicaiton/json")
+        except Exception as e:
+            response_data["status"] = "failed"
+            return HttpResponse(json.dump(response_data), content_type="applicaiton/json")
