@@ -73,8 +73,24 @@ def removeMD(request):
             image_without_exif.putdata(data)
             image_without_exif.save(outputFolder+fileName)
             md_removed_img_url=request.META['HTTP_HOST']+ '/' + outputFolder +  fileName
+            exifdata = image_without_exif.getexif()
+            MDDict={}
+            for tag_id in exifdata:
+                # get the tag name, instead of human unreadable tag id
+                tag = TAGS.get(tag_id, tag_id)
+                data = exifdata.get(tag_id)
+                # decode bytes 
+                if isinstance(data, bytes):
+                    try:
+                        data = data.decode()
+                    except Exception as e:
+                        pass
+                # print(f"{tag}: {data}")
+                # metadataValue += f"{tag:25}: {data}" + '\n'
+                MDDict[tag]=str(data)
             response_data["img_url"] = md_removed_img_url
             response_data["status"] = "success"
+            response_data["data"] = MDDict
             return HttpResponse(json.dumps(response_data), content_type="applicaiton/json")
         except Exception as e:
             response_data["status"] = "failed"

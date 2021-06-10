@@ -156,3 +156,16 @@ input[type=button], input[type=submit], input[type=reset] {
   margin-bottom: 5px;
   float: left;
 }
+.loaderContainer{
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  opacity: .8;
+  position: absolute;
+  padding-top: 20%;
+}
+
+.dataContainer{
+  height: 100%;
+  width:100%;
+}
