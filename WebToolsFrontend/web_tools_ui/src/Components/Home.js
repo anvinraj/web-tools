@@ -96,6 +96,7 @@ class Home extends Component{
                 var response=res.data
                 console.log(response);
                 if(response.status=="success"){
+                  console.log(response)
                     this.setState({
                       respImgUrl:'http://'+response.img_url,
                       response:true,
@@ -117,6 +118,8 @@ class Home extends Component{
               })
 
     }
+
+
 
     // chooseFile = (event) =>{
     //   console.log(event.target.files[0]);
@@ -154,7 +157,8 @@ class Home extends Component{
                               : null }
 
                               {this.state.imgReadyToDownload ?
-                                  <button className="buttonBoxDownload" onClick={this.onFileUpload}>Download Image</button>
+                                  <a href={this.state.respImgUrl} target="_blank" className="buttonBoxDownload">Download Image</a>
+                                  // <button className="buttonBoxDownload" onClick={this.onDownloadBtnClick}>Download Image</button>
                               : null }
 
                               <br/>
